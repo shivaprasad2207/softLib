@@ -1,0 +1,97 @@
+{% extends "main.html" %}
+{% block navigation %}
+
+<style>
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+
+{% if userRole == '0' %}
+ <div class="dropdown">
+  <button class="dropbtn">Category</button>
+  <div class="dropdown-content">
+    <a href="#" onclick="javascript:showCategoryAddForm('{{ orgCode }}');return false;">Add</a>
+      <a href="/categoryList/">show</a>
+  </div>
+</div>
+{% endif %}
+
+
+ <div class="dropdown">
+  <button class="dropbtn">Books</button>
+  <div class="dropdown-content">
+    {% if userRole == '0' %}
+      <a href="/book/">Add Book</a>
+    {% endif %}
+      <a href="/bookList">Book List</a>
+    <a href="/book/search">Book Search</a>
+  </div>
+</div>
+
+{% if userRole == '0' %}
+<div class="dropdown">
+  <button class="dropbtn">Reservations</button>
+  <div class="dropdown-content">
+    <a href="/reserve/expired">Expired</a>
+    <a href="/book/search/">Book Reservation</a>
+    <a href="/user/search/">Users Reserved</a>
+  </div>
+</div>
+{% endif %}
+
+{% block bookList %}  {% endblock %}
+{% block categoryList %}  {% endblock %}
+{% block categoryModify %}  {% endblock %}
+{% block subCategoryMain %}  {% endblock %}
+{% block bookAdd %} {% endblock %}
+
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-8 text-center">
+
+        <div id="catShow">
+
+        </div>
+        <div id="message">
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+

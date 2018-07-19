@@ -1,0 +1,83 @@
+
+{% if section == 'SHOW_SUBCATEGORY_OPTION' %}
+    <div class = "form-group">
+      <label class = "col-sm-4 control-label">Select Sub Category</label>
+      <div class = "col-sm-5">
+          <select  onchange="javascript:getRemainingBookFrom();return false;" id="subCategoryId">
+              <option value="-1">   </option>
+            {% for category in subCategories %}
+              <option value="{{category.subCategoryId }}"> {{ category.subCategory }} </option>
+            {% endfor %}
+          </select>
+     </div>
+    </div>
+{% endif %}
+
+
+{% if section == 'SHOW_REST_OF_BOOK_FORM' %}
+    <div class = "form-group">
+      <label class = "col-sm-4 control-label">Book Name</label>
+      <div class = "col-sm-5">
+        <input type ="text" class ="form-control" id="bookName" name="bookName" placeholder ="Enter Book Name" required>
+     </div>
+    </div>
+
+    <div class = "form-group">
+      <label class = "col-sm-4 control-label">Author/Authors Name</label>
+      <div class = "col-sm-5">
+        <input type ="text" class ="form-control" id="author" name="author" placeholder ="Enter Author Name" required>
+     </div>
+    </div>
+
+    <div class = "form-group">
+      <label class = "col-sm-4 control-label">Publisher</label>
+      <div class = "col-sm-5">
+         <input type ="text" class ="form-control" id="publisher" name="publisher" placeholder ="Enter Publisher Name" required>
+     </div>
+    </div>
+
+    <div class = "form-group">
+      <label class = "col-sm-4 control-label">ISBN</label>
+      <div class = "col-sm-5">
+        <input type ="text" class ="form-control" id="isbn" name="isbn" placeholder ="Enter ISBN" required>
+     </div>
+    </div>
+
+    <div class = "form-group">
+      <label class = "col-sm-4 control-label">Remarks</label>
+      <div class = "col-sm-5">
+        <input type ="text" class ="form-control" id="remark" name="remark" placeholder ="Enter Remark" required>
+     </div>
+    </div>
+
+    <div class = "form-group">
+      <label class = "col-sm-4 control-label">Is CD enclosed</label>
+      <div class = "col-sm-5">
+             <select id="is_cd">
+                 <option value="YES"> YES </option>
+                 <option value="NO">  NO </option>
+             </select>
+     </div>
+    </div>
+
+    <div class = "form-group">
+      <label class = "col-sm-4 control-label">Nuber of Copies</label>
+      <div class = "col-sm-5">
+         <input type ="text" class ="form-control" id="copies" name="copies" placeholder ="Enter Number of copies" required>
+     </div>
+    </div>
+
+    <div class = "form-group">
+        <div class = "col-sm-5">
+    <input type='hidden' id="csrfmiddlewaretoken" name='csrfmiddlewaretoken' value='{{csrfmiddlewaretoken}}' />
+    <button type="submit" id="subButton" class="btn btn-primary" onclick="javascript:addBook();return false;" >Submit</button>
+        </div>
+    </div>
+
+{% endif %}
+
+{% if section == 'SHOW_BOOK_SEARCH_FORM' %}
+
+
+
+{% endif %}

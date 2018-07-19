@@ -1,0 +1,92 @@
+{% extends "manage_books.html" %}
+
+<style>
+td {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+table {
+  table-layout: fixed;
+}
+
+</style>
+
+{% block bookList %}
+<div id="stalePageContent">
+  <table class="table table-hover" border="1">
+    <thead>
+      <tr>
+        <th><u>Book Name</u></th>
+          <th><u>Copies</u><font color="red" size="small">&nbsp<b>*</b></font></th>
+          <th><u>Author</u></th>
+          <th><u>Publisher</u></th>
+          <th><u>ISBN</u></th>
+          <th><u>CD</u></th>
+        <th><u>categories</u><font color="red">&nbsp<b>*</b></font></th>
+          <th><u>remark</u><font color="red">&nbsp<b>*</b></font></th>
+          {% if userRole == '0' %}
+          <th align="center" style="text-align:center"><u>Add Copy</u></th>
+          <th align="center" style="text-align:center"><u>Actions</u></th>
+          {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+    {% for book in books %}
+      <tr>
+          <td ><font size="1">{{ book.bookName}}</font></td>
+          <td>
+              <a href="/bookList/copies/?bookId={{ book.bookId }}"> <b> <u>{{ book.copies}} <i class="fa fa-hand-o-left"></i> </u></b></a>
+          </td>
+
+          <td width="40"><font size="1">{{ book.author}}</font></td>
+          <td width="40"><font size="1">{{ book.publisher}}</font></td>
+          <td width="40"><font size="1">{{ book.isbn}}</font></td>
+          <td width="40"><font size="1">{{ book.is_cd}}</font></td>
+          <td width="40"><font size="1">{{ book.categoryId.category }}<b>-></b></font> <br> <font size="1"> {{ book.subCategoryId.subCategory}}</font></td>
+           <td width="50"><font size="1">{{ book.remark}}</font></td>
+         {% if userRole == '0' %}
+          <td>
+
+                <form action="/book/add/" method="POST">
+                    <input type="hidden" name="bookId" value="{{ book.bookId }}" />
+                    <input type='hidden' id="csrfmiddlewaretoken" name='csrfmiddlewaretoken' value='{{csrfmiddlewaretoken}}' />
+                    <input type="text" size="2" id="copies" name="copies"/>
+                    <button type="submit" id="subButton" class="btn btn-primary">Add</button>
+                </form>
+
+          </td>
+
+          <td>
+              <table>
+                  <tr>
+                      <td>
+                            <form action="/reserve/book/reservation" method="GET">
+                                <input type="hidden" name="bookId" value="{{ book.bookId }}" />
+                                 <button type="submit" id="subButton" class="btn btn-primary">Reservation</button>
+                            </form>
+                      </td>
+                      <td>
+                            <form action="/book/modify/" method="GET">
+                                <input type="hidden" name="bookId" value="{{ book.bookId }}" />
+                                <button type="submit" id="subButton" class="btn btn-success">Modify</button>
+                            </form>
+                      </td>
+                      <td>
+                            <form action="/book/delete/" method="POST">
+                                <input type="hidden" name="bookId" value="{{ book.bookId }}" />
+                                <input type='hidden' id="csrfmiddlewaretoken" name='csrfmiddlewaretoken' value='{{csrfmiddlewaretoken}}' />
+                                <button type="submit" id="subButton" class="btn btn-danger">Delete</button>
+                            </form>
+                      </td>
+                  </tr>
+
+              </table>
+          </td>
+          {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

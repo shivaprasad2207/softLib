@@ -1,0 +1,96 @@
+{% extends "manage_books.html" %}
+
+<style>
+td {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+table {
+  table-layout: fixed;
+}
+
+</style>
+
+{% block bookList %}
+<div id="stalePageContent">
+    <b> Book Name : <font color="blue">  {{ bookName }}  </font></b>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th>Copy Name</th>
+          <th>Status</th>
+           {% if userRole == '0' %}
+          <th>Action</th>
+          {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+    {% for copy in copies %}
+      <tr>
+          <td><b>
+              <font color="blue">
+                  <a href="/reserve/bookCopy/?bookCopyCode={{ copy.bookCopyCode }}&bookId={{ copy.bookId.bookId }}&bookCopyId={{ copy.bookCopyId }}">
+               {{ copy.bookCopyCode }} <i class="fa fa-hand-o-left"></i>
+              </a>
+           </font>
+
+          </b></td>
+          <td>
+                {% if copy.is_reserved == 0 %}
+                    <b> <font color="green"> Not Reserved </font> </b>
+                {% else %}
+                    <b> <font color="blue"> Reserved </font> </b>
+                {% endif %}
+
+          </td>
+           {% if userRole == '0' %}
+          <td>
+              <table>
+                  <tr>
+
+                       <td>
+                           <form action="/reserve/bookCopy/" method="GET">
+                            <input type="hidden" name="bookCopyCode" value="{{ copy.bookCopyCode }}" />
+                            <input type="hidden" name="bookCopyId" value="{{ copy.bookCopyId }}" />
+                            <input type="hidden" name="bookId" value="{{ copy.bookId.bookId }}" />
+                             <button type="submit" id="subButton2" class="btn btn-success">Reservations</button>
+                            </form>
+                      </td>
+
+
+                      <td>
+                           <form action="/bookList/copies/delete/" method="POST">
+                            <input type="hidden" name="bookCopyCode" value="{{ copy.bookCopyCode }}" />
+                            <input type="hidden" name="bookCopyId" value="{{ copy.bookCopyId }}" />
+                            <input type="hidden" name="bookId" value="{{ copy.bookId.bookId }}" />
+                            <input type='hidden' id="csrfmiddlewaretoken" name='csrfmiddlewaretoken' value='{{csrfmiddlewaretoken}}' />
+                             <button type="submit" id="subButton2" class="btn btn-danger">Delete</button>
+                            </form>
+                      </td>
+
+                      <td>
+                          <form action="/bookList/copies/reserve/" method="GET">
+                              <input type="hidden" name="bookCopyCode" value="{{ copy.bookCopyCode }}" />
+                            <input type="hidden" name="bookCopyId" value="{{ copy.bookCopyId }}" />
+                            <input type="hidden" name="bookId" value="{{ copy.bookId.bookId }}" />
+                            <button type="submit" id="subButton2" class="btn btn-primary">Reserve</button>
+                        </form>
+
+                      </td>
+
+                  </tr>
+
+              </table>
+
+
+
+          </td>
+        {% endif %}
+
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

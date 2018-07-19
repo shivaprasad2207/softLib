@@ -1,0 +1,75 @@
+
+{% block userSection %}
+<div id="stalePageContent">
+  <table class="table table-hover" border="1">
+    <thead>
+      <tr>
+        <th><u>First Name</u></th>
+          <th><u>Last Name</u></font></th>
+          <th><u>Email</u></th>
+          <th><u>Phone</u></th>
+          <th><u>address</u></th>
+          <th><u>User Role</u></th>
+          <th align="center" style="text-align:center"><u>Actions</u></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+      <tr>
+          <td ><font size="1">{{ user.firstName}}</font></td>
+          <td><font size="1">{{ user.lastName}}</font></td>
+          <td><font size="1">{{ user.email}}</font></td>
+          <td><font size="1">{{ user.phone}}</font></td>
+          <td><font size="1">{{ user.address}}</font></td>
+          <td>  <font size="1">
+                {% if   user.userRole == 0 %}
+                        ADMIN
+                {%  else    %}
+                        USER
+                {% endif %}
+                </font>
+          </td>
+
+          <td>
+              <table>
+                  <tr>
+                      <td>
+                            <form action="/user/reservation/" method="GET">
+                                <input type="hidden" name="userInfoId" value="{{ user.userInfoId}}" />
+                                <input type="hidden" name="userAuthId" value="{{ user.userAuthId}}" />
+                                 <b> <font color="orange"> <input type="submit" value="reservation" /> </font>  </b>
+                            </form>
+                      </td>
+                     <td>
+                            <form action="/user/modify/" method="GET">
+                                <input type="hidden" name="userInfoId" value="{{ user.userInfoId}}" />
+                                <input type="hidden" name="userAuthId" value="{{ user.userAuthId}}" />
+                                <b> <font color="green"> <input type="submit" value="Modify" /> </font>  </b>
+                            </form>
+                      </td>
+                      <td>
+                            <form action="/user/delete/" method="GET">
+                                <input type="hidden" name="userInfoId" value="{{ user.userInfoId}}" />
+                                <input type="hidden" name="userAuthId" value="{{ user.userAuthId}}" />
+                                <b> <font color="red"> <input type="submit" value="Delete" /> </font>  </b>
+                            </form>
+                      </td>
+                      <td>
+                            <form action="/user/chuser/" method="GET">
+                                <input type="hidden" name="userInfoId" value="{{ user.userInfoId}}" />
+                                <input type="hidden" name="userAuthId" value="{{ user.userAuthId}}" />
+                                <b> <font color="blue"> <input type="submit" value="Change privalage" /> </font>  </b>
+                            </form>
+                      </td>
+                  </tr>
+
+              </table>
+          </td>
+
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

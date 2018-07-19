@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"  href="/static/css/Demo/bootstrap.css">
+    <link rel="stylesheet"  href="/static/css/Demo/jquery-ui.css">
+     <link rel="stylesheet"  href="/static/css/Demo/font-awesome.min.css">
+    <script type="text/javascript" src="/static/js/Demo/jquery.js" > </script>
+    <script type="text/javascript" src="/static/js/Demo/jquery-ui.js" > </script>
+    <script type="text/javascript" src="/static/js/Demo/mylib.js" > </script>
+    <script type="text/javascript" src="/static/js/Demo/popper.js" > </script>
+    <script type="text/javascript" src="/static/js/Demo/bootstrap.min.js" > </script>
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+  </style>
+<style>
+html, body {height: 100%;}
+body {
+    background-color: #FFF1BA;
+}
+
+h1 {
+    color: maroon;
+    margin-left: 40px;
+}
+
+.sidenav {
+    background-color: maroon;
+    height: inherit;
+}
+
+footer {
+    background-color: blue;
+}
+
+#content, .container, .span9
+{
+    border: 1px solid #000;
+    overflow-y:auto;
+    height:100%;
+}​
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+.navbar-custom {
+    background-color:#C14D07;
+    color:#ffffff;
+    border-radius:0;
+    height: 3px;
+    min-height:25px !important;
+}
+
+.log-section {
+    background-color:#FFF1BA;
+}
+
+.main-nav {
+    background-color:#A03621;
+    height: 5px;
+    min-height:60px !important;
+}
+
+</style>
+</head>
+<body>
+
+{% block content %} {% endblock %}
+{% block login %} {% endblock %}
+
+</body>
+
+<nav id="myNavbar" class="navbar navbar-custom navbar-inverse navbar-fixed-bottom" style="bg-color:blue">
+<div class="text-center">
+    <a href="http://www.shivaprasad.info" target="_blank"><b><u><font color="yellow">&copy;Author</font></u></b></a>
+    </div>
+</nav>
+</html>

@@ -1,0 +1,33 @@
+
+
+{% extends "manage_books.html" %}
+
+{% block bookAdd %}
+
+
+<div class="jumbotron text-center log-section" >
+<div class="clear-top">
+
+    <p>Book Name : <font color="blue"><b> {{ bookName }}  </b></font>  </p>
+
+    <p>Copy Name : <font color="blue"><b>
+       <a href="/reserve/bookCopy/?bookCopyCode={{ bookCopyCode }}&bookId={{ bookId }}&bookCopyId={{ bookCopyId }}">
+        {{ bookCopyCode }} <i class="fa fa-hand-o-left"></i>
+       </a>
+    </b></font>  </p>
+
+    <p>From Date: <input type="text" id="datepicker1"></p>
+
+    <p>To Date: <input type="text" id="datepicker2"></p>
+
+    <input type='hidden' id="csrfmiddlewaretoken" name='csrfmiddlewaretoken' value='{{csrfmiddlewaretoken}}' />
+
+    <input type='hidden' id="bookId" name='bookId' value='{{bookId}}' />
+    <input type='hidden' id="bookCopyId" name='bookCopyId' value='{{bookCopyId}}' />
+    <input type='hidden' id="bookCopyCode" name='bookCopyCode' value='{{bookCopyCode}}' />
+
+    <button type="submit" id="subButton" class="btn btn-primary" onclick="javascript:addReservation();return false;" >Submit</button>
+
+</div>
+</div>
+{% endblock %}

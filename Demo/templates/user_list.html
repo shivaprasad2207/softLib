@@ -1,0 +1,20 @@
+{% extends "manage_users.html" %}
+
+<style>
+td {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+table {
+  table-layout: fixed;
+}
+
+</style>
+
+{% block userSection %}
+{% if section == "SHOW_USER_SEARCH" %}
+    {% include "user_search_form.html" %}
+{% endif %}
+{% include "user_list_c.html" %}
+
+{% endblock %}

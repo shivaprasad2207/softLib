@@ -1,0 +1,74 @@
+{% extends "manage_books.html" %}
+
+<style>
+td {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+table {
+  table-layout: fixed;
+}
+
+</style>
+
+{% block bookList %}
+<br>
+<div id="stalePageContent">
+    <b><u><p>Book Name :</u></b> <font color="blue"><b> {{ info.bookName }}  </b></font>  </p>
+
+<div class="clear-top">
+    <table class="table table-hover" border="3">
+        <tr>
+            <th>
+               Book Copy
+            </th>
+            <th>
+              Reservation
+            </th>
+        </tr>
+        {% for copy in info.copies %}
+        <tr>
+            <td>
+
+               <a href="/reserve/bookCopy/?bookCopyCode={{copy.bookCopyCode}}&bookId={{copy.bookId}}&bookCopyId={{copy.bookCopyId}}">
+                   <u><font color="blue"><b>{{ copy.bookCopyCode   }} <i class="fa fa-hand-o-left"></i></b></font></u>
+               </a>
+            </td>
+            <td>
+                <table class="table table-hover" border="1">
+                    <thead>
+                    <tr>
+                    <th><u>First Name</u></th>
+                    <th><u>Last Name</u></th>
+                    <th><u>Email</u></th>
+                    <th><u>Phone</u></th>
+                    <th><u>Adress</u></th>
+                    <th><u>Reserved on</u></th>
+                    <th><u>From</u></th>
+                    <th><u>To</u></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%  for reservation in copy.reservations %}
+                    <tr>
+                        <td><font size="1">{{ reservation.firstName}}</font></td>
+                        <td><font size="1">{{ reservation.lastName}}</font>  </td>
+                        <td><font size="1">{{ reservation.email}}</font>  </td>
+                        <td><font size="1">{{ reservation.phone}}</font>  </td>
+                        <td><font size="1">{{ reservation.adress}}</font>  </td>
+                         <td><b><font size="3">{{ reservation.dateReserved}}</font></b></td>
+                        <td><b><font size="3">{{ reservation.dateFrom}}</font></b></td>
+                        <td><b><font size="3">{{ reservation.dateTo}}</font></b></td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        {% endfor %}
+            </td>
+        </tr>
+
+    </table>
+{% endblock %}
+</div>
+</div>

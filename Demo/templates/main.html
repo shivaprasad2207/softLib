@@ -1,0 +1,65 @@
+
+{% extends "base.html" %}
+{% block content %}
+<nav class="navbar navbar-inverse main-nav">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse  main-nav" id="myNavbar">
+      <ul class="nav navbar-nav navbar-center">
+        <li><a href="/main/">Home</a></li>
+        {% if userRole == '0' %}
+         <li><a href="/manageUsers/">Users</a></li>
+        {% endif %}
+        <li><a href="/manageBooks/">Books</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <p class="navbar-text" align="center"><font color="yellow" size="4"><b><i> <u>Open Library for {{orgName}} </u></i></b></font></></p>
+      <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text"> <font color="white" size="1">Welcome.. {{firstName}} {{lastName}}</font></p></li>
+        <li><a href="/logout/"> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% block navigation %}
+
+<br><br>
+
+<div style="color:green;font-size=small">
+
+    <p><b> <font color="blue">About App: </font> </b></p>
+    It is book library management tool. Here book library instance is created using the basic details like admin email id
+    and address and phone number.<br>
+    Once registered, it will it will give him/her a Pin which will be identifier for login to his library.
+    Later he can add books and users who wants to join his/her library.
+    <br><br> <font color="blue"> Admin Roles:</font>
+    Admin can manage user by add/modify/delete. In the book management admin can add book by creating category/subcategory.<br>
+    Admin can add number of copies available for that book, it will provide identifier for each of book copy.
+    By clicking the copy identifier the user can reserv books. <br>
+    Admin can do many search operation like per user as how many books reserved and also per book how many copies booked.<br>
+    Admin can see expired reservation list to alert the user.
+    <br><font color="blue"> User Roles:</font> User can search the book and reserve copy of it, he can see dates of reservation
+    the other users.
+    <br><br> <font color="blue"> Use Demo instance :</font><br>
+    Library Code: fatuGEtD <br>
+    Admin Login Id is ZfZ0WumG<br>
+    Admin Password : noman<br>
+    User Pin: gH04jCwL<br>
+    User Password: gH04jCwL<br>
+   <font color="blue"> You can Try:</font> Try creating your own instance of library, add books and users.
+ <br><br>
+
+<a href="http://www.shivaprasad.info" target="_blank"><b><u><font color="blue">&copy;Author</font></u></b></a>
+</div>
+
+
+{% endblock %}
+{% endblock %}
+
